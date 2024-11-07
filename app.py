@@ -26,7 +26,7 @@ if "client" not in st.session_state:
     st.session_state.client = None
 
 # タイトルの表示
-st.title("💬 Claude Chat App")
+st.title("💬 Claude 3.5 Sonnet Chat")
 
 # サイドバーにAPIキー入力欄を追加
 with st.sidebar:
@@ -43,6 +43,9 @@ with st.sidebar:
     1. Anthropic API Keyを入力
     2. メッセージを入力
     3. Enterキーを押すか送信ボタンをクリック
+
+    ### モデル情報
+    - Claude 3.5 Sonnet (claude-3-5-sonnet-20241022)
 
     ### 注意事項
     - API Keyは安全に管理してください
@@ -72,10 +75,10 @@ if prompt := st.chat_input("メッセージを入力してください"):
             message_placeholder = st.empty()
             full_response = ""
 
-            # Claudeとの対話
+            # Claudeとの対話（Claude 3.5 Sonnetモデルを使用）
             with st.spinner("Claude が考え中..."):
                 response = st.session_state.client.messages.create(
-                    model="claude-3-sonnet-20240229",
+                    model="claude-3-5-sonnet-20241022",  # Claude 3.5 Sonnet
                     max_tokens=4096,
                     messages=[
                         {"role": m["role"], "content": m["content"]}
